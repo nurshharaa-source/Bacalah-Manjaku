@@ -112,9 +112,45 @@ body{
   body{background-attachment:scroll;background-position:center top;background-size:auto 100vh}
 }
 
+
+/* Main menu: the uploaded illustrated mission map is the actual clickable home screen */
+#landingScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px;background:#bceaff}
+.landing-frame{position:relative;width:min(1500px,100%);line-height:0;border-radius:22px;overflow:hidden;box-shadow:0 18px 55px #17345b30}
+.landing-art{display:block;width:100%;height:auto}
+.landing-hotspot{position:absolute;display:block;border:3px solid transparent;border-radius:22px;background:transparent;cursor:pointer;line-height:normal;transition:background .18s,border-color .18s,transform .18s}
+.landing-hotspot:hover,.landing-hotspot:focus-visible{background:#ffffff18;border-color:#fff7b0;box-shadow:0 0 0 5px #fff7b044;outline:none;transform:translateY(-2px)}
+.landing-hotspot span{position:absolute;left:50%;bottom:-42px;transform:translateX(-50%);background:#17345b;color:#fff;padding:8px 13px;border-radius:999px;font-weight:900;font-size:clamp(10px,1.2vw,15px);white-space:nowrap;opacity:0;transition:opacity .18s}
+.landing-hotspot:hover span,.landing-hotspot:focus-visible span{opacity:1}
+#hotspot1{left:21.3%;top:50%;width:18%;height:34%}
+#hotspot2{left:41.8%;top:50%;width:18%;height:34%}
+#hotspot3{left:62.3%;top:50%;width:18%;height:34%}
+.landing-tip{text-align:center;color:#21486c;font-weight:800;line-height:1.4;padding:10px 8px 0}
+#appShell{min-height:100vh}
+.home-return{background:#fff0b7;color:#765000}
+@media(max-width:650px){
+ #landingScreen{padding:6px;align-items:flex-start}
+ .landing-frame{border-radius:12px}
+ .landing-hotspot{border-radius:12px}
+ #hotspot1,#hotspot2,#hotspot3{top:49%;height:37%}
+ .landing-tip{font-size:.82rem}
+}
+
 </style></head>
 <body>
-<header class="topbar"><nav class="nav"><div class="brand"><div class="brand-mark">⭐</div><span>MISI BINTANG BACAAN</span></div><div class="nav-actions"><button class="tiny-btn" id="readHelp">🔊 Cara guna</button><button class="tiny-btn" id="resetProgress">↻ Mula semula</button></div></nav></header>
+
+<section id="landingScreen" aria-label="Menu utama Misi Bintang Bacaan">
+  <div>
+    <div class="landing-frame">
+      <img class="landing-art" src="Bintang%20Bacaan_%20Misi%20Peribahasa.png" alt="Menu utama Misi Bintang Bacaan dengan tiga peringkat pengembaraan peribahasa">
+      <button class="landing-hotspot" id="hotspot1" aria-label="Masuk ke Peringkat 1: Kenali Peribahasa"><span>Peringkat 1 · Kenali Peribahasa</span></button>
+      <button class="landing-hotspot" id="hotspot2" aria-label="Masuk ke Peringkat 2: Baca Ayat"><span>Peringkat 2 · Baca Ayat</span></button>
+      <button class="landing-hotspot" id="hotspot3" aria-label="Masuk ke Peringkat 3: Jana Ayat dan Cerita"><span>Peringkat 3 · Jana Ayat &amp; Cerita</span></button>
+    </div>
+    <div class="landing-tip">✨ Tekan kad Peringkat 1, 2 atau 3 pada gambar untuk memulakan misi bacaan.</div>
+  </div>
+</section>
+<div id="appShell" class="hidden">
+<header class="topbar"><nav class="nav"><div class="brand"><div class="brand-mark">⭐</div><span>MISI BINTANG BACAAN</span></div><div class="nav-actions"><button class="tiny-btn home-return" id="returnHome">🏠 Menu utama</button><button class="tiny-btn" id="readHelp">🔊 Cara guna</button><button class="tiny-btn" id="resetProgress">↻ Mula semula</button></div></nav></header>
 <section class="hero"><div class="hero-panel"><div class="hero-copy"><div class="eyebrow">🌈 MISI BACAAN BERMULA sambil mengembara!</div><h1>Pengembaraan<br>Peribahasa</h1><p>Ikuti tiga misi bacaan. Dengar, baca dan cipta ayat bersama rakan kartun pengembaraan kita!</p></div><div class="hero-avatar" aria-label="Maskot robot kartun">🤖</div></div></section>
 <main class="layout"><aside class="sidebar"><div class="side-title">Peta pengembaraan</div><div class="level-nav-wrap"><button class="level-nav active" data-level="1"><span class="level-num">1</span><span>Kenali<br>Peribahasa</span></button><button class="level-nav" data-level="2"><span class="level-num">2</span><span>Baca<br>Ayat</span></button><button class="level-nav" data-level="3"><span class="level-num">3</span><span>Cipta Ayat<br>& Cerita</span></button></div><div class="progress-box"><strong>⭐ Kemajuan misi</strong><div class="progress-line"><div class="progress-fill" id="progressFill"></div></div><div id="progressText">0 daripada 3 misi selesai</div><p class="side-note">Selesaikan setiap misi untuk mengumpul bintang bacaan.</p></div></aside>
 <section class="content-card">
@@ -123,6 +159,7 @@ body{
 <div id="level2" class="level-panel hidden"><div class="section-head"><div><div class="kicker">Misi 02 · Latihan lancar</div><h2>Baca Ayat</h2><p>Pilih peribahasa, kemudian dengar dan ikuti bacaan ayat contoh.</p></div><span class="pill">📚 Baca dengan jelas</span></div><label class="input-label" for="sentenceProverb">Pilih peribahasa</label><select class="select" id="sentenceProverb"></select><div id="sentenceList" class="sentence-list" style="margin-top:15px"></div><div class="action-row"><button class="primary-btn" id="complete2">⭐ Selesai misi</button></div></div>
 <div id="level3" class="level-panel hidden"><div class="section-head"><div><div class="kicker">Misi 03 · Cipta dan kongsi</div><h2>Cipta Ayat dan Cerita</h2><p>Gunakan peribahasa yang sama untuk membina ayat baharu atau menjana cerita pendek.</p></div><span class="pill">✍️ Jadilah pencipta</span></div><label class="input-label" for="createProverb">Pilih peribahasa</label><select class="select" id="createProverb"></select><div class="field-row"><div><label class="input-label" for="topicInput">Tema ayat / cerita</label><input class="text-field" id="topicInput" placeholder="Contoh: membantu rakan"></div><div><label class="input-label" for="storyLength">Panjang cerita</label><select class="select" id="storyLength"><option value="short">Pendek (3 ayat)</option><option value="medium">Sederhana (5 ayat)</option></select></div></div><label class="input-label" for="customContext">Idea tambahan (pilihan)</label><textarea class="text-field" id="customContext" placeholder="Contoh: berlaku di sekolah semasa gotong-royong"></textarea><div class="action-row"><button class="generate-btn" id="generateSentence">✨ Jana ayat baharu</button><button class="primary-btn" id="generateStory">📚 Jana cerita pendek</button></div><div id="generatedOutput" class="result-box"><div class="empty-state">💡 Hasil ayat atau cerita anda akan muncul di sini.</div></div><p class="hint">Penjana contoh ini menggunakan pola dan bank ayat terbina dalam, jadi ia boleh digunakan tanpa kunci API atau akaun luar. Semak semula ayat yang dijana bersama guru.</p><div class="action-row"><button class="primary-btn" id="complete3">🏆 Selesai semua misi</button></div></div>
 </section></main><footer class="footer">Misi Bintang Bacaan · Bahan sokongan pembelajaran Bahasa Melayu · Suara audio bergantung pada tetapan peranti.</footer><div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
 <script>
 const idioms=[
  {id:'emas',title:'Masa itu emas',emoji:'⏰',meaning:'Masa sangat berharga dan perlu digunakan dengan sebaik-baiknya.',syllables:['Ma','sa','i','tu','e','mas'],sentences:['Aiman menyiapkan kerja sekolahnya dengan segera kerana dia tahu bahawa masa itu emas.','Siti menggunakan masa lapangnya untuk membaca buku kerana dia percaya bahawa masa itu emas.'],topics:['menyiapkan kerja sekolah','membaca buku pada masa lapang']},
@@ -165,6 +202,21 @@ function createSentence(){const x=idioms.find(i=>i.id===$('createProverb').value
 function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function storySentences(){const x=idioms.find(i=>i.id===$('createProverb').value)||selected();const topic=$('topicInput').value.trim()||x.topics[0];const ctx=$('customContext').value.trim();let a;if(x.id==='emas')a=[`Aiman menyiapkan kerja sekolahnya dengan segera.`,`Dia tahu bahawa masa itu emas.`,`Siti pula menggunakan masa lapangnya untuk membaca buku.`,`Siti percaya bahawa masa itu emas.`,`Kedua-duanya belajar menggunakan masa dengan bijak.`];else if(x.id==='bahu')a=[`Murid-murid Tahun 4 merancang untuk membersihkan kelas.`,`Setiap murid melakukan tugas masing-masing.`,`Mereka berganding bahu supaya persekitaran sekolah sentiasa bersih.`,`Penduduk kampung juga membantu mangsa banjir dengan mengumpulkan makanan dan pakaian.`,`Mereka sedar bahawa kerja menjadi lebih mudah apabila dilakukan bersama-sama.`];else a=[`Pada hujung minggu, Siti melawat neneknya.`,`Nenek menunjukkan permainan congkak kepada Siti.`,`Nenek menerangkan bahawa warisan perlu dijaga.`,`Siti juga mempelajari tarian zapin daripada neneknya.`,`Siti berharap seni tradisional itu tak lapuk dek hujan, tak lekang dek panas.`];return $('storyLength').value==='short'?a.slice(0,3):a}
 function outputCard(title,paras){const out=$('generatedOutput');out.innerHTML=`<div class="story-output"><div class="kicker">${escapeHtml(title)}</div>${paras.map(p=>`<p>${sentenceParts(p)}</p>`).join('')}<div class="action-row"><button class="audio-btn" id="speakOutput">🔊 Dengar bacaan</button><button class="secondary-btn" id="copyOutput">📋 Salin teks</button></div></div>`;$('speakOutput').addEventListener('click',()=>speak(paras.join(' ')));$('copyOutput').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(paras.join('\n'));showToast('Teks disalin.')}catch{showToast('Salinan automatik tidak tersedia pada peranti ini.')}})}
-document.querySelectorAll('.level-nav').forEach(b=>b.addEventListener('click',()=>switchLevel(Number(b.dataset.level))));$('speakProverb').addEventListener('click',()=>speak(selected().title));$('speakMeaning').addEventListener('click',()=>speak(selected().meaning));$('complete1').addEventListener('click',()=>complete(1));$('sentenceProverb').addEventListener('change',renderSentences);$('complete2').addEventListener('click',()=>complete(2));$('generateSentence').addEventListener('click',()=>outputCard('Ayat baharu',[createSentence()]));$('generateStory').addEventListener('click',()=>outputCard('Cerita pendek',storySentences()));$('complete3').addEventListener('click',()=>{complete(3);if(completed.size===3)showToast('Hebat! Anda Duta Bintang Bacaan! 🏆')});$('resetProgress').addEventListener('click',()=>{completed.clear();updateProgress();switchLevel(1);showToast('Kemajuan dimulakan semula.')});$('readHelp').addEventListener('click',()=>{alert('CARA GUNA\n\n1. Pilih peribahasa dalam Peringkat 1 dan tekan butang audio.\n2. Pergi ke Peringkat 2, pilih peribahasa dan dengar setiap ayat.\n3. Pergi ke Peringkat 3 untuk menjana ayat atau cerita pendek.\n4. Tekan “Dengar bacaan” pada hasil anda untuk mendengar teks.\n\nWarna merah dan biru digunakan sebagai panduan visual suku kata/perkataan. Suara bergantung pada sokongan Bahasa Melayu peranti.');});
+document.querySelectorAll('.level-nav').forEach(b=>b.addEventListener('click',()=>switchLevel(Number(b.dataset.level))));
+function openMission(level){
+  $('landingScreen').classList.add('hidden');
+  $('appShell').classList.remove('hidden');
+  switchLevel(level);
+}
+function returnToLanding(){
+  $('appShell').classList.add('hidden');
+  $('landingScreen').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+$('hotspot1').addEventListener('click',()=>openMission(1));
+$('hotspot2').addEventListener('click',()=>openMission(2));
+$('hotspot3').addEventListener('click',()=>openMission(3));
+$('returnHome').addEventListener('click',returnToLanding);
+$('speakProverb').addEventListener('click',()=>speak(selected().title));$('speakMeaning').addEventListener('click',()=>speak(selected().meaning));$('complete1').addEventListener('click',()=>complete(1));$('sentenceProverb').addEventListener('change',renderSentences);$('complete2').addEventListener('click',()=>complete(2));$('generateSentence').addEventListener('click',()=>outputCard('Ayat baharu',[createSentence()]));$('generateStory').addEventListener('click',()=>outputCard('Cerita pendek',storySentences()));$('complete3').addEventListener('click',()=>{complete(3);if(completed.size===3)showToast('Hebat! Anda Duta Bintang Bacaan! 🏆')});$('resetProgress').addEventListener('click',()=>{completed.clear();updateProgress();switchLevel(1);showToast('Kemajuan dimulakan semula.')});$('readHelp').addEventListener('click',()=>{alert('CARA GUNA\n\n1. Pilih peribahasa dalam Peringkat 1 dan tekan butang audio.\n2. Pergi ke Peringkat 2, pilih peribahasa dan dengar setiap ayat.\n3. Pergi ke Peringkat 3 untuk menjana ayat atau cerita pendek.\n4. Tekan “Dengar bacaan” pada hasil anda untuk mendengar teks.\n\nWarna merah dan biru digunakan sebagai panduan visual suku kata/perkataan. Suara bergantung pada sokongan Bahasa Melayu peranti.');});
 renderCards();renderProverb();fillSelects();renderSentences();updateProgress();if('speechSynthesis'in window)window.speechSynthesis.onvoiceschanged=()=>{};
 </script></body></html>
