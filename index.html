@@ -1,66 +1,163 @@
 <!doctype html>
-<html lang="ms"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dunia Peribahasa bersama Puteri Purut</title>
 <style>
-:root{--ink:#28134f;--pink:#e52c87;--gold:#ffd66c;--purple:#5a2e99;--cream:#fff9e9}
-*{box-sizing:border-box}body{margin:0;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:#24104d}button,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+:root{--ink:#28134f;--pink:#e52c87;--gold:#ffd66c;--purple:#5a2e99;--cream:#fff9e9;--blue:#2476d9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:#24104d}button,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(.25)}.hidden{display:none!important}
 .screen{min-height:100vh;padding:clamp(12px,2.5vw,30px);background:radial-gradient(circle at 20% 12%,#ffd9f4,transparent 36%),radial-gradient(circle at 80% 25%,#8ce7ff,transparent 35%),linear-gradient(145deg,#30205f,#136a91 55%,#7341a0)}
-.shell{max-width:1400px;margin:auto}.topbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-.btn{border:3px solid #ffe39a;border-radius:17px;padding:12px 17px;font-weight:900;color:#fff;background:linear-gradient(#ff69b1,#d71f7b);box-shadow:0 4px 0 #7d1c63;text-shadow:0 1px 2px #6a2055}
-.btn.purple{background:linear-gradient(#7961e8,#45299a);box-shadow:0 4px 0 #2a1766}.btn.blue{background:linear-gradient(#51d5ff,#2476d9);box-shadow:0 4px 0 #174c8e}.btn.gold{background:linear-gradient(#fff0a5,#efb13c);color:#4b205d;text-shadow:none}
+#home{background:linear-gradient(145deg,#241046dd,#14577dcc),url('peta-fantasi.png') center/cover fixed}
+.shell{max-width:1400px;margin:auto}.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.btn{border:3px solid #ffe39a;border-radius:17px;padding:12px 17px;font-weight:900;color:#fff;background:linear-gradient(#ff69b1,#d71f7b);box-shadow:0 4px 0 #7d1c63;text-shadow:0 1px 2px #6a2055;transition:transform .15s}.btn:hover:not(:disabled){transform:translateY(-2px)}.btn.purple{background:linear-gradient(#7961e8,#45299a);box-shadow:0 4px 0 #2a1766}.btn.blue{background:linear-gradient(#51d5ff,#2476d9);box-shadow:0 4px 0 #174c8e}.btn.gold{background:linear-gradient(#fff0a5,#efb13c);color:#4b205d;text-shadow:none}
 .panel{background:linear-gradient(140deg,#fffdf2f5,#ffeffaf5);border:4px solid var(--gold);border-radius:28px;padding:clamp(16px,2.5vw,30px);box-shadow:0 12px 28px #10072d66}
-h1{font-size:clamp(2.4rem,6vw,5.2rem);line-height:1.05;margin:8px 0;text-shadow:0 4px #f5add5,0 7px 12px #24104466}h2{font-size:clamp(1.6rem,3vw,2.6rem);margin:0 0 10px}h3{font-size:clamp(1.2rem,2vw,1.6rem);margin:0 0 8px}.hero{text-align:center;color:white;padding:clamp(22px,4vw,48px) 8px}.hero p{font-size:clamp(1rem,2vw,1.35rem);font-weight:800}.eyebrow{font-weight:900;letter-spacing:.12em;color:#ffe58d;text-transform:uppercase}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.portal{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:22px 16px;border:4px solid #ffe59b;border-radius:25px;background:linear-gradient(145deg,#fff7d9,#f7c6ed 55%,#b4eaff);box-shadow:0 8px 0 #4b246e;color:var(--ink);transition:.2s}.portal:hover{transform:translateY(-4px)}.portal .emoji{font-size:clamp(3rem,6vw,5rem)}.portal p{line-height:1.45;margin:0;font-weight:700}.foot{text-align:center;color:#fff2c1;font-weight:800;margin-top:22px}
-.title{text-align:center;margin-bottom:18px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.proverb-card{padding:20px 12px;min-height:155px;border:3px solid #f7d477;border-radius:22px;background:linear-gradient(140deg,#fff8db,#f5c8f2);color:#4b206a;font-weight:900;font-size:clamp(1rem,1.6vw,1.25rem);box-shadow:0 5px 0 #b779b2}.proverb-card .emoji{display:block;font-size:2.6rem;margin-bottom:10px}.proverb-card.active{outline:5px solid #50d7ff;background:linear-gradient(#fff,#c8f5ff)}
-.meaning{margin-top:18px;padding:clamp(20px,3vw,34px);background:white;border:3px dashed #df91c1;border-radius:22px;text-align:center}.big{font-size:clamp(1.8rem,4vw,3rem);font-weight:1000;color:#76288b;line-height:1.18;margin-bottom:14px}.definition{font-size:clamp(1.2rem,2.3vw,1.7rem);font-weight:800;line-height:1.45}.actions,.nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}.nav{justify-content:space-between}
-.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.video{padding:12px;border-radius:20px;background:#271746;color:white;text-align:center}.video video{width:100%;max-height:430px;background:#140b2d;border-radius:14px}.video-placeholder{min-height:240px;display:grid;place-items:center;background:linear-gradient(140deg,#4a3078,#137c9f);border-radius:14px;padding:20px}.video-placeholder .emoji{font-size:4rem}.sentences{display:grid;gap:14px}.sentence{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:white;border:3px solid #f1ce72;border-radius:20px;padding:18px}.sentence p{font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.5;font-weight:800;margin:0}.sentence strong{color:#d92370}.sound{width:56px;height:56px;border-radius:50%;background:linear-gradient(#52d5ff,#2475dc);border:3px solid white;color:white;font-size:1.5rem;box-shadow:0 3px #164a8c}
-.generators{display:grid;grid-template-columns:1fr 1fr;gap:18px}.generator{display:flex;flex-direction:column;gap:13px}.generator label{font-weight:900;font-size:1.1rem}select{width:100%;padding:14px;border:3px solid #e4a2d0;border-radius:15px;background:white;color:#321959;font-weight:800}.result{min-height:155px;padding:20px;border:3px dashed #d99aca;border-radius:20px;background:#fff;font-size:clamp(1.1rem,2vw,1.4rem);font-weight:700;line-height:1.55}.result.empty{display:grid;place-items:center;text-align:center;color:#8c7aa2}.result .emoji{display:block;font-size:2.6rem}
-.guideback{position:fixed;inset:0;background:#120a32cc;z-index:10;display:grid;place-items:center;padding:16px}.guide{width:min(760px,100%);max-height:90vh;overflow:auto;background:var(--cream);border:5px solid var(--gold);border-radius:25px;padding:24px}.guide li{font-size:1.05rem;line-height:1.5;margin:10px 0}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:20;background:#25154e;color:white;padding:12px 18px;border-radius:14px}
-@media(max-width:850px){.grid3,.cards,.layout,.generators{grid-template-columns:1fr}.topbar .btn{flex:1}.proverb-card{min-height:unset}.nav{justify-content:center}}
-</style></head><body>
+h1{font-size:clamp(2.4rem,6vw,5.2rem);line-height:1.05;margin:8px 0;text-shadow:0 4px #f5add5,0 7px 12px #24104466}h2{font-size:clamp(1.6rem,3vw,2.6rem);margin:0 0 10px}h3{font-size:clamp(1.2rem,2vw,1.6rem);margin:0 0 8px}.hero{text-align:center;color:white;padding:clamp(22px,4vw,48px) 8px}.hero p{font-size:clamp(1rem,2vw,1.35rem);font-weight:800}.eyebrow{font-weight:900;letter-spacing:.12em;color:#ffe58d;text-transform:uppercase}.hero-badge{display:inline-block;border:2px solid #ffe58d;border-radius:999px;background:#36165bbf;padding:8px 16px;color:#fff4be;font-weight:900}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.portal{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:22px 16px;border:4px solid #ffe59b;border-radius:25px;background:linear-gradient(145deg,#fff7d9f5,#f7c6edf5 55%,#b4eafff5);box-shadow:0 8px 0 #4b246e;color:var(--ink);transition:.2s}.portal:hover{transform:translateY(-4px)}.portal .emoji{font-size:clamp(3rem,6vw,5rem)}.portal p{line-height:1.45;margin:0;font-weight:700}.foot{text-align:center;color:#fff2c1;font-weight:800;margin-top:22px}
+.title{text-align:center;margin-bottom:18px}.concept-image{display:block;width:min(100%,680px);max-height:230px;object-fit:contain;margin:0 auto 18px;border-radius:20px;filter:drop-shadow(0 6px 12px #24104425)}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.proverb-card{padding:20px 12px;min-height:155px;border:3px solid #f7d477;border-radius:22px;background:linear-gradient(140deg,#fff8db,#f5c8f2);color:#4b206a;font-weight:900;font-size:clamp(1rem,1.6vw,1.25rem);box-shadow:0 5px 0 #b779b2}.proverb-card .emoji{display:block;font-size:2.6rem;margin-bottom:10px}.proverb-card.active{outline:5px solid #50d7ff;background:linear-gradient(#fff,#c8f5ff)}
+.meaning{margin-top:18px;padding:clamp(20px,3vw,34px);background:white;border:3px dashed #df91c1;border-radius:22px;text-align:center}.big{font-size:clamp(1.8rem,4vw,3rem);font-weight:1000;color:#76288b;line-height:1.18;margin-bottom:14px}.definition{font-size:clamp(1.2rem,2.3vw,1.7rem);font-weight:800;line-height:1.45}.actions,.nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}.nav{justify-content:space-between}.nav .btn{min-width:150px}
+.lesson-intro{padding:16px;border-radius:20px;background:linear-gradient(135deg,#fff7dc,#f6d8f0);text-align:center;margin-bottom:18px;border:2px solid #f1d07a}.lesson-intro p{margin:0;font-weight:800}.lesson-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}.sentence-card{overflow:hidden;background:#fff;border:3px solid #f1ce72;border-radius:22px;padding:14px;box-shadow:0 5px 0 #c991bb}.sentence-number{display:inline-block;margin-bottom:10px;padding:7px 12px;border-radius:999px;background:#f8def1;color:#6d267e;font-weight:900}.video-frame{padding:10px;border-radius:18px;background:linear-gradient(145deg,#291447,#265b91);color:white;text-align:center}.video-frame video{display:block;width:100%;aspect-ratio:16/9;max-height:360px;object-fit:contain;background:#100820;border-radius:12px}.video-hint{margin:8px 0 0;color:#fff0b6;font-size:.88rem;line-height:1.4}.sentence-text{font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.5;font-weight:800;margin:16px 2px}.sentence-text strong{color:#d92370}.sentence-actions{display:flex;justify-content:flex-end}.video-error{display:none;font-size:.9rem;color:#fff0b6;margin-top:8px;line-height:1.4}.audio-btn{border:3px solid white;border-radius:15px;padding:10px 14px;color:white;font-weight:900;background:linear-gradient(#51d5ff,#2476d9);box-shadow:0 3px #164a8c}
+.generators{display:grid;grid-template-columns:1fr 1fr;gap:18px}.generator{display:flex;flex-direction:column;gap:13px}.generator label{font-weight:900;font-size:1.1rem}select{width:100%;padding:14px;border:3px solid #e4a2d0;border-radius:15px;background:white;color:#321959;font-weight:800}.result{min-height:155px;padding:20px;border:3px dashed #d99aca;border-radius:20px;background:#fff;font-size:clamp(1.1rem,2vw,1.4rem);font-weight:700;line-height:1.55;white-space:pre-wrap}.result:empty{background:linear-gradient(140deg,#fff,#fff8fc)}.result .emoji{display:block;font-size:2.6rem}
+.guideback{position:fixed;inset:0;background:#120a32cc;z-index:10;display:grid;place-items:center;padding:16px}.guide{width:min(760px,100%);max-height:90vh;overflow:auto;background:var(--cream);border:5px solid var(--gold);border-radius:25px;padding:24px}.guide li{font-size:1.05rem;line-height:1.5;margin:10px 0}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:20;background:#25154e;color:white;padding:12px 18px;border-radius:14px;max-width:92vw;text-align:center;box-shadow:0 8px 20px #0005}
+@media(max-width:850px){.grid3,.cards,.generators,.lesson-cards{grid-template-columns:1fr}.topbar .btn{flex:1}.proverb-card{min-height:unset}.nav{justify-content:center}.concept-image{max-height:190px}.nav .btn{flex:1}}
+</style>
+</head>
+<body>
 <main id="home" class="screen"><div class="shell">
 <div class="topbar"><button class="btn purple" data-guide>📖 Panduan Pengguna</button><button class="btn gold" data-home>🏠 Halaman Utama</button></div>
-<header class="hero"><div class="eyebrow">Pengembaraan bahasa bermula di sini</div><h1>✨ Dunia Peribahasa ✨</h1><h2>Bersama Puteri Purut</h2><p>Terokai pulau ajaib, kumpulkan bintang dan kuasai peribahasa!</p></header>
+<header class="hero"><div class="hero-badge">✨ Pengembaraan bahasa bermula di sini ✨</div><h1>🌟 Dunia Peribahasa 🌟</h1><h2>Bersama Puteri Purut</h2><p>Terokai pulau ajaib, kumpulkan bintang dan kuasai peribahasa!</p></header>
 <div class="grid3">
 <button class="portal" data-screen="level1"><span class="emoji">📚✨</span><h2>Peringkat 1</h2><h3>Kenali Peribahasa</h3><p>Terokai maksud dan dengar sebutan peribahasa.</p><span class="btn">Masuk ke Pulau Ilmu ➜</span></button>
-<button class="portal" data-screen="level2"><span class="emoji">📖🔊</span><h2>Peringkat 2</h2><h3>Baca Ayat</h3><p>Tonton video dan dengar contoh ayat.</p><span class="btn">Masuk ke Pulau Bacaan ➜</span></button>
-<button class="portal" data-screen="level3"><span class="emoji">🪄📜</span><h2>Peringkat 3</h2><h3>Jana Ayat dan Jana Cerita</h3><p>Web menjana kandungan selepas butang ditekan.</p><span class="btn">Masuk ke Pulau Cerita ➜</span></button>
+<button class="portal" data-screen="level2"><span class="emoji">📖🔊</span><h2>Peringkat 2</h2><h3>Baca Ayat</h3><p>Tonton video bagi setiap ayat dan dengar bacaan ayat.</p><span class="btn">Masuk ke Pulau Bacaan ➜</span></button>
+<button class="portal" data-screen="level3"><span class="emoji">🪄📜</span><h2>Peringkat 3</h2><h3>Jana Ayat dan Jana Cerita</h3><p>Pilih peribahasa dan tekan butang untuk menjana kandungan.</p><span class="btn">Masuk ke Pulau Cerita ➜</span></button>
 </div><p class="foot">🌟 Baca, dengar dan terokai — setiap peribahasa membuka dunia baharu! 🌟</p></div></main>
+
 <main id="level1" class="screen hidden"><div class="shell"><div class="topbar"><button class="btn" data-screen="home">🏠 Halaman Utama</button><button class="btn purple" data-guide>📖 Panduan Pengguna</button></div><section class="panel">
-<div class="title"><h2>🌸 Peringkat 1: Kenali Peribahasa</h2><p>Pilih kad untuk meneroka maksudnya.</p></div><div class="cards" id="cards"></div>
+<div class="title"><img class="concept-image" src="peringkat-1-konsep.png" alt="Ilustrasi Peringkat 1" onerror="this.style.display='none'"><h2>🌸 Peringkat 1: Kenali Peribahasa</h2><p>Pilih kad peribahasa untuk meneroka maksudnya.</p></div><div class="cards" id="cards"></div>
 <div class="meaning"><div class="big" id="pname">Pilih kad peribahasa dahulu</div><div class="definition" id="meaning">Maksud peribahasa akan dipaparkan di sini.</div><div class="actions"><button class="btn blue" id="sayName">🔊 Dengar Sebutan</button><button class="btn purple" id="sayMeaning">🔊 Dengar Maksud</button></div></div>
 <div class="nav"><button class="btn purple" data-screen="home">⬅ Halaman Utama</button><button class="btn" id="prevP">⬅ Sebelumnya</button><button class="btn" id="nextP">Seterusnya ➜</button></div></section></div></main>
+
 <main id="level2" class="screen hidden"><div class="shell"><div class="topbar"><button class="btn" data-screen="home">🏠 Halaman Utama</button><button class="btn purple" data-screen="level1">👑 Peringkat 1</button><button class="btn gold" data-guide>📖 Panduan Pengguna</button></div><section class="panel">
-<div class="title"><h2>📖 Peringkat 2: Baca Ayat</h2><div class="big" id="l2name">Masa itu emas</div><p>Tonton video apabila fail tersedia dan dengar setiap ayat.</p></div>
-<div class="layout"><div class="video" id="videoArea"><div class="video-placeholder"><div><div class="emoji">🎬🏰</div><h3>Video peribahasa</h3><p>Video akan dipaparkan selepas fail MP4 dimasukkan ke folder <code>videos</code>.</p></div></div></div><div class="sentences" id="sentences"></div></div>
+<div class="title"><img class="concept-image" id="lessonImage" src="peringkat-2-masa-itu-emas-konsep.png" alt="Ilustrasi Peringkat 2" onerror="this.style.display='none'"><h2>📖 Peringkat 2: Baca Ayat</h2><div class="big" id="l2name">Masa itu emas</div><p>Tonton video dalam setiap kad, baca ayat dan tekan butang audio untuk mendengar ayat.</p></div>
+<div class="lesson-intro"><p>🎬 Setiap ayat mempunyai video dan butang audionya sendiri. Pilih main pada video untuk menontonnya.</p></div>
+<div class="lesson-cards" id="sentences"></div>
 <div class="nav"><button class="btn purple" data-screen="home">🏠 Halaman Utama</button><button class="btn purple" data-screen="level1">⬅ Peringkat 1</button><button class="btn" id="prevL2">⬅ Sebelumnya</button><button class="btn" id="nextL2">Seterusnya ➜</button></div></section></div></main>
+
 <main id="level3" class="screen hidden"><div class="shell"><div class="topbar"><button class="btn" data-screen="home">🏠 Halaman Utama</button><button class="btn purple" data-screen="level2">⬅ Peringkat 2</button><button class="btn gold" data-guide>📖 Panduan Pengguna</button></div><section class="panel">
-<div class="title"><h2>🪄 Peringkat 3: Jana Ayat dan Jana Cerita</h2><p>Pilih peribahasa, kemudian tekan butang jana. Hasil hanya muncul selepas butang ditekan.</p></div>
-<div class="generators"><article class="generator"><h2>✍️ Jana Ayat</h2><label for="sentenceSelect">Pilih peribahasa</label><select id="sentenceSelect"></select><button class="btn" id="makeSentence">✨ Jana Ayat</button><div class="result empty" id="sentenceResult"><div><span class="emoji">📜✨</span>Ayat akan muncul selepas butang Jana Ayat ditekan.</div></div><button class="btn blue" id="listenSentence">🔊 Dengar Ayat</button></article>
-<article class="generator"><h2>📖 Jana Cerita</h2><label for="storySelect">Pilih peribahasa</label><select id="storySelect"></select><button class="btn purple" id="makeStory">🪄 Jana Cerita</button><div class="result empty" id="storyResult"><div><span class="emoji">📚🌟</span>Cerita akan muncul selepas butang Jana Cerita ditekan.</div></div><button class="btn blue" id="listenStory">🔊 Dengar Cerita</button></article></div></section></div></main>
-<div class="guideback hidden" id="guide" role="dialog" aria-modal="true"><section class="guide"><div class="topbar"><h2>📘 Panduan Pengguna</h2><button class="btn" id="closeGuide">✕ Tutup</button></div><ol><li><b>Peringkat 1:</b> Pilih kad peribahasa, baca maksud dan tekan audio untuk mendengar sebutan atau maksud.</li><li><b>Peringkat 2:</b> Gunakan “Seterusnya” untuk menukar peribahasa. Tonton video apabila fail MP4 tersedia dan tekan ikon audio bagi setiap ayat.</li><li><b>Peringkat 3:</b> Pilih peribahasa kemudian tekan “Jana Ayat” atau “Jana Cerita”. Web akan memaparkan hasil selepas butang ditekan.</li><li><b>Audio:</b> Suara menggunakan ciri bacaan pelayar. Jika tiada bunyi, semak volum peranti.</li></ol></section></div><div class="toast hidden" id="toast"></div>
+<div class="title"><img class="concept-image" src="peringkat-3-konsep.png" alt="Ilustrasi Peringkat 3" onerror="this.style.display='none'"><h2>🪄 Peringkat 3: Jana Ayat dan Jana Cerita</h2><p>Pilih peribahasa terlebih dahulu. Hasil akan dipaparkan selepas butang jana ditekan.</p></div>
+<div class="generators"><article class="generator"><h2>✍️ Jana Ayat</h2><label for="sentenceSelect">Pilih peribahasa</label><select id="sentenceSelect"><option value="" selected disabled>Pilih peribahasa dahulu</option></select><button class="btn" id="makeSentence">✨ Jana Ayat</button><div class="result" id="sentenceResult" aria-live="polite"></div><button class="btn blue" id="listenSentence" disabled>🔊 Dengar Ayat</button></article>
+<article class="generator"><h2>📖 Jana Cerita</h2><label for="storySelect">Pilih peribahasa</label><select id="storySelect"><option value="" selected disabled>Pilih peribahasa dahulu</option></select><button class="btn purple" id="makeStory">🪄 Jana Cerita</button><div class="result" id="storyResult" aria-live="polite"></div><button class="btn blue" id="listenStory" disabled>🔊 Dengar Cerita</button></article></div></section></div></main>
+
+<div class="guideback hidden" id="guide" role="dialog" aria-modal="true" aria-labelledby="guideTitle"><section class="guide"><div class="topbar"><h2 id="guideTitle">📘 Panduan Pengguna</h2><button class="btn" id="closeGuide">✕ Tutup</button></div><ol><li><b>Peringkat 1:</b> Pilih kad peribahasa, baca maksud dan tekan audio untuk mendengar sebutan atau maksud.</li><li><b>Peringkat 2:</b> Setiap kad ayat mempunyai video sendiri. Tekan butang main pada video dan gunakan butang “Dengar Ayat” untuk mendengar bacaan.</li><li><b>Peringkat 3:</b> Pilih peribahasa kemudian tekan “Jana Ayat” atau “Jana Cerita”. Ruang hasil kosong sehingga butang jana ditekan.</li><li><b>Audio:</b> Suara menggunakan ciri bacaan pelayar. Jika tiada bunyi, semak volum peranti.</li></ol></section></div><div class="toast hidden" id="toast" role="status"></div>
+
 <script>
-const data=[
-{name:"Masa itu emas",meaning:"Masa sangat berharga dan tidak patut disia-siakan.",icon:"⏳",video:"masa-itu-emas.mp4",sentences:["Aiman menyiapkan kerja sekolahnya dengan segera kerana dia tahu bahawa masa itu emas.","Siti menggunakan masa lapangnya untuk membaca buku kerana dia percaya bahawa masa itu emas."]},
-{name:"Berganding bahu",meaning:"Bekerjasama atau saling membantu untuk mencapai sesuatu matlamat.",icon:"🤝",video:"berganding-bahu.mp4",sentences:["Murid-murid Tahun 4 berganding bahu membersihkan kelas supaya persekitaran sekolah sentiasa bersih.","Penduduk kampung berganding bahu membantu mangsa banjir dengan mengumpulkan makanan dan pakaian."]},
-{name:"Tak lapuk dek hujan, tak lekang dek panas",meaning:"Kekal terpelihara dan tidak dilupakan walaupun zaman berubah.",icon:"🏛️",video:"warisan.mp4",sentences:["Permainan congkak masih popular hingga kini kerana warisan ini tak lapuk dek hujan, tak lekang dek panas.","Siti mempelajari tarian zapin daripada neneknya supaya seni tradisional itu tak lapuk dek hujan, tak lekang dek panas."]}
-];let selected=0,lesson=0,lastSentence="",lastStory="";const $=id=>document.getElementById(id);
-function show(id){document.querySelectorAll("main.screen").forEach(x=>x.classList.add("hidden"));$(id).classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"});if(id==="level1")renderCards();if(id==="level2")renderLesson()}
-document.querySelectorAll("[data-screen]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.screen)));document.querySelectorAll("[data-home]").forEach(b=>b.addEventListener("click",()=>show("home")));
-function speak(t){if(!t){alert("Jana atau pilih kandungan dahulu.");return}if(!("speechSynthesis"in window)){alert("Audio tidak disokong oleh pelayar ini.");return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="ms-MY";u.rate=.88;const v=speechSynthesis.getVoices().find(v=>/Malay|ms-MY/i.test(v.name+" "+v.lang));if(v)u.voice=v;speechSynthesis.speak(u)}
-function renderCards(){$("cards").innerHTML=data.map((p,i)=>`<button class="proverb-card ${i===selected?"active":""}" data-card="${i}"><span class="emoji">${p.icon}</span>${p.name}</button>`).join("");document.querySelectorAll("[data-card]").forEach(b=>b.addEventListener("click",()=>{selected=+b.dataset.card;renderCards()}));$("pname").textContent=data[selected].name;$("meaning").textContent=data[selected].meaning}
-$("sayName").onclick=()=>speak(data[selected].name);$("sayMeaning").onclick=()=>speak(data[selected].meaning);$("prevP").onclick=()=>{selected=(selected+2)%3;renderCards()};$("nextP").onclick=()=>{selected=(selected+1)%3;renderCards()};
-function renderLesson(){const p=data[lesson];$("l2name").textContent=p.name;$("videoArea").innerHTML=`<video controls playsinline preload="metadata"><source src="videos/${p.video}" type="video/mp4"></video><p>Jika belum ada video, letakkan fail <code>${p.video}</code> dalam folder <code>videos</code>.</p>`;$("sentences").innerHTML=p.sentences.map((s,i)=>`<article class="sentence"><p>${s.replaceAll(p.name,`<strong>${p.name}</strong>`)}</p><button class="sound" aria-label="Dengar ayat" data-audio="${i}">🔊</button></article>`).join("");document.querySelectorAll("[data-audio]").forEach(b=>b.onclick=()=>speak(p.sentences[+b.dataset.audio]))}
-$("prevL2").onclick=()=>{lesson=(lesson+2)%3;renderLesson()};$("nextL2").onclick=()=>{lesson=(lesson+1)%3;renderLesson()};
-for(const id of ["sentenceSelect","storySelect"])$(id).innerHTML=data.map((p,i)=>`<option value="${i}">${p.name}</option>`).join("");
-function result(id,t){$(id).classList.remove("empty");$(id).textContent=t}
-$("makeSentence").onclick=()=>{const p=data[+$("sentenceSelect").value];const examples=[
-`Aiman menyiapkan kerja sekolahnya tepat pada waktunya kerana dia mengamalkan peribahasa “${p.name}”.`,
-`Murid-murid itu menunjukkan sikap “${p.name}” ketika menyelesaikan tugasan bersama-sama.`,
-`Keluarga Siti terus memelihara tradisi mereka kerana percaya bahawa “${p.name}” wajar diwarisi generasi muda.`];lastSentence=examples[+$("sentenceSelect").value];result("sentenceResult",lastSentence)};
-$("makeStory").onclick=()=>{const p=data[+$("storySelect").value];const stories=[
-`Pada suatu hari, Aiman menghadapi cabaran di sekolah. Dia teringat akan peribahasa “${p.name}”. Dengan usaha dan sikap yang baik, Aiman berjaya menyelesaikan cabaran itu. Pengalaman tersebut mengajarnya supaya mengamalkan pengajaran peribahasa dalam kehidupan seharian.`,
-`Pada minggu itu, kelas Siti menjalankan aktiviti istimewa. Guru memperkenalkan peribahasa “${p.name}”. Siti dan rakan-rakannya memahami maksudnya melalui pengalaman mereka sendiri. Mereka berjanji untuk mengamalkan pengajaran tersebut di sekolah, di rumah dan dalam masyarakat.`];lastStory=stories[Math.floor(Math.random()*stories.length)];result("storyResult",lastStory)};
-$("listenSentence").onclick=()=>speak(lastSentence);$("listenStory").onclick=()=>speak(lastStory);
-document.querySelectorAll("[data-guide]").forEach(b=>b.onclick=()=> $("guide").classList.remove("hidden"));$("closeGuide").onclick=()=> $("guide").classList.add("hidden");$("guide").onclick=e=>{if(e.target===$("guide"))$("guide").classList.add("hidden")};renderCards();renderLesson();
-</script></body></html>
+const data = [
+ {name:"Masa itu emas", meaning:"Masa sangat berharga dan tidak patut disia-siakan.", icon:"⏳", image:"peringkat-2-masa-itu-emas-konsep.png", videos:["masa-itu-emas-1.mp4.MOV","masa-itu-emas-2.mp4.mp4"], sentences:["Aiman menyiapkan kerja sekolahnya dengan segera kerana dia tahu bahawa masa itu emas.","Siti menggunakan masa lapangnya untuk membaca buku kerana dia percaya bahawa masa itu emas."]},
+ {name:"Berganding bahu", meaning:"Bekerjasama atau saling membantu untuk mencapai sesuatu matlamat.", icon:"🤝", image:"peringkat-2-berganding-bahu-konsep.png", videos:["berganding-bahu-1.mp4.MOV","berganding-bahu-2.mp4.MOV"], sentences:["Murid-murid Tahun 4 berganding bahu membersihkan kelas supaya persekitaran sekolah sentiasa bersih.","Penduduk kampung berganding bahu membantu mangsa banjir dengan mengumpulkan makanan dan pakaian."]},
+ {name:"Tak lapuk dek hujan, tak lekang dek panas", meaning:"Kekal terpelihara dan tidak dilupakan walaupun zaman berubah.", icon:"🏛️", image:"peringkat-2-warisan-konsep.png", videos:["warisan-1.mp4.MOV","warisan-2.mp4.mp4"], sentences:["Permainan congkak masih popular hingga kini kerana warisan ini tak lapuk dek hujan, tak lekang dek panas.","Siti mempelajari tarian zapin daripada neneknya supaya seni tradisional itu tak lapuk dek hujan, tak lekang dek panas."]}
+];
+let selected = 0;
+let lesson = 0;
+let lastSentence = "";
+let lastStory = "";
+const $ = id => document.getElementById(id);
+
+function show(id){
+ document.querySelectorAll("main.screen").forEach(el=>el.classList.add("hidden"));
+ $(id).classList.remove("hidden");
+ window.scrollTo({top:0,behavior:"smooth"});
+ if(id === "level1") renderCards();
+ if(id === "level2") renderLesson();
+}
+document.querySelectorAll("[data-screen]").forEach(button=>button.addEventListener("click",()=>show(button.dataset.screen)));
+document.querySelectorAll("[data-home]").forEach(button=>button.addEventListener("click",()=>show("home")));
+
+function toast(message){
+ const box = $("toast"); box.textContent = message; box.classList.remove("hidden");
+ window.clearTimeout(toast.timer); toast.timer = window.setTimeout(()=>box.classList.add("hidden"),3200);
+}
+function speak(text){
+ if(!text){toast("Jana ayat atau cerita dahulu.");return;}
+ if(!( "speechSynthesis" in window)){toast("Audio tidak disokong oleh pelayar ini.");return;}
+ window.speechSynthesis.cancel();
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "ms-MY"; utterance.rate = .88;
+ const voice = window.speechSynthesis.getVoices().find(v=>/Malay|ms-MY/i.test(v.name+" "+v.lang));
+ if(voice) utterance.voice = voice;
+ window.speechSynthesis.speak(utterance);
+}
+
+function renderCards(){
+ $("cards").innerHTML = data.map((p,i)=>`<button class="proverb-card ${i===selected?"active":""}" data-card="${i}"><span class="emoji">${p.icon}</span>${p.name}</button>`).join("");
+ document.querySelectorAll("[data-card]").forEach(button=>button.addEventListener("click",()=>{selected=Number(button.dataset.card);renderCards();}));
+ $("pname").textContent=data[selected].name;
+ $("meaning").textContent=data[selected].meaning;
+}
+$("sayName").onclick=()=>speak(data[selected].name);
+$("sayMeaning").onclick=()=>speak(data[selected].meaning);
+$("prevP").onclick=()=>{selected=(selected+data.length-1)%data.length;renderCards();};
+$("nextP").onclick=()=>{selected=(selected+1)%data.length;renderCards();};
+
+function renderLesson(){
+ const p = data[lesson];
+ $("l2name").textContent = p.name;
+ const image = $("lessonImage"); image.src = p.image; image.alt = "Ilustrasi peribahasa: " + p.name; image.style.display = "block";
+ $("sentences").innerHTML = p.sentences.map((sentence,index)=>{
+   const videoPath = p.videos[index];
+   return `<article class="sentence-card">
+    <span class="sentence-number">📚 Ayat ${index+1}</span>
+    <div class="video-frame">
+      <video controls playsinline preload="metadata" aria-label="Video untuk ayat ${index+1}">
+        <source src="${videoPath}">
+        Pelayar anda tidak menyokong video ini.
+      </video>
+      <p class="video-hint">Video ${index+1}</p>
+      <p class="video-error">Video tidak dapat dimainkan. Cuba muat semula halaman atau semak format fail video.</p>
+    </div>
+    <p class="sentence-text">${escapeHtml(sentence).replaceAll(escapeHtml(p.name),`<strong>${escapeHtml(p.name)}</strong>`)}</p>
+    <div class="sentence-actions"><button class="audio-btn" data-audio="${index}">🔊 Dengar Ayat</button></div>
+   </article>`;
+ }).join("");
+ document.querySelectorAll("#sentences video").forEach(video=>video.addEventListener("error",()=>{const hint=video.parentElement.querySelector(".video-error");if(hint)hint.style.display="block";}));
+ document.querySelectorAll("[data-audio]").forEach(button=>button.addEventListener("click",()=>speak(p.sentences[Number(button.dataset.audio)])));
+}
+function escapeHtml(value){return String(value).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");}
+$("prevL2").onclick=()=>{lesson=(lesson+data.length-1)%data.length;renderLesson();};
+$("nextL2").onclick=()=>{lesson=(lesson+1)%data.length;renderLesson();};
+
+for(const id of ["sentenceSelect","storySelect"]){
+ data.forEach((p,index)=>{const option=document.createElement("option");option.value=String(index);option.textContent=p.name;$(id).appendChild(option);});
+}
+function showResult(id,text){$(id).textContent=text;}
+$("makeSentence").onclick=()=>{
+ const value=$("sentenceSelect").value;
+ if(value===""){toast("Pilih peribahasa dahulu.");return;}
+ const p=data[Number(value)];
+ const examples=[
+  "Aiman menyiapkan kerja sekolahnya dengan segera kerana dia tahu bahawa masa itu emas.",
+  "Murid-murid Tahun 4 berganding bahu membersihkan kelas supaya persekitaran sekolah sentiasa bersih.",
+  "Permainan congkak masih popular hingga kini kerana warisan ini tak lapuk dek hujan, tak lekang dek panas."
+ ];
+ lastSentence=examples[Number(value)]; showResult("sentenceResult",lastSentence); $("listenSentence").disabled=false;
+};
+$("makeStory").onclick=()=>{
+ const value=$("storySelect").value;
+ if(value===""){toast("Pilih peribahasa dahulu.");return;}
+ const stories=[
+  "Aiman selalu menangguhkan kerja sekolahnya. Pada suatu hari, dia hampir tidak sempat menyiapkan tugasan sebelum kelas bermula. Aiman sedar bahawa masa itu emas. Sejak hari itu, dia menyusun jadual dan menggunakan masa dengan lebih bijak. Dia berasa bangga kerana dapat menyiapkan kerja tepat pada waktunya.",
+  "Kelas Tahun 4 akan mengadakan aktiviti membersihkan kelas. Pada mulanya, kelas mereka sangat berselerak. Ketua kelas mengajak semua rakan berganding bahu. Ada yang menyapu lantai, mengelap tingkap dan menyusun buku. Mereka berjaya membersihkan kelas dengan cepat. Semua murid gembira kerana bekerjasama menjadikan tugas lebih mudah.",
+  "Siti melawat rumah neneknya pada cuti sekolah. Nenek mengajarnya bermain congkak dan menceritakan permainan tradisional pada zaman dahulu. Siti sangat berminat lalu berjanji akan mengajar rakan-rakannya bermain congkak. Dia sedar bahawa warisan seperti ini tidak patut dilupakan. Permainan itu terus dikenali kerana tak lapuk dek hujan, tak lekang dek panas."
+ ];
+ lastStory=stories[Number(value)]; showResult("storyResult",lastStory); $("listenStory").disabled=false;
+};
+$("listenSentence").onclick=()=>speak(lastSentence);
+$("listenStory").onclick=()=>speak(lastStory);
+
+document.querySelectorAll("[data-guide]").forEach(button=>button.addEventListener("click",()=>$("guide").classList.remove("hidden")));
+$("closeGuide").onclick=()=>$("guide").classList.add("hidden");
+$("guide").onclick=event=>{if(event.target===$("guide"))$("guide").classList.add("hidden");};
+document.addEventListener("keydown",event=>{if(event.key==="Escape")$("guide").classList.add("hidden");});
+renderCards();
+</script>
+</body>
+</html>
