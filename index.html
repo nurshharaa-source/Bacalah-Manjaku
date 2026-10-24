@@ -3,19 +3,6 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#5b48d6"><title>Misi Bintang Bacaan — Pengembaraan Peribahasa</title>
-
-body {
-  background-image:
-    linear-gradient(
-      rgba(235, 247, 255, 0.25),
-      rgba(255, 250, 235, 0.35)
-    ),
-    url("./Bintang Bacaan_Misi Peribahasa.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-}
 <style>
 :root{--ink:#202044;--purple:#6652d9;--blue:#2589ed;--red:#f04466;--yellow:#ffcf4a;--mint:#c9f7df;--paper:#fffdf8;--shadow:0 12px 32px #30256b1c}
 *{box-sizing:border-box}body{margin:0;font-family:Nunito,"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:linear-gradient(150deg,#e9f9ff,#fff7da 50%,#f2eaff);min-height:100vh}
@@ -104,6 +91,26 @@ body{
 @keyframes sparkle{0%,100%{transform:scale(.75) rotate(0);opacity:.55}50%{transform:scale(1.2) rotate(18deg);opacity:1}}
 @media(max-width:640px){.sentence-layout{grid-template-columns:1fr}.context-scene{min-height:125px;order:-1}.scene-char{font-size:45px}}
 @media(prefers-reduced-motion:reduce){.scene-char,.scene-prop,.scene-cloud,.scene-spark{animation:none}}
+
+
+/* Latar belakang pengembaraan daripada fail PNG pengguna */
+body{
+  background-color:#dff4ff;
+  background-image:
+    linear-gradient(rgba(239,248,255,.22),rgba(255,250,239,.28)),
+    url("./Bintang%20Bacaan_%20Misi%20Peribahasa.png");
+  background-size:cover;
+  background-position:center top;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+}
+/* Kekalkan teks bacaan jelas walaupun latar belakang berwarna */
+.topbar{background:rgba(255,253,244,.94)}
+.hero-panel{background:linear-gradient(125deg,rgba(40,126,216,.96),rgba(101,83,216,.95) 56%,rgba(155,101,232,.95))}
+.sidebar,.content-card{background:rgba(255,255,255,.94);backdrop-filter:blur(5px)}
+@media(max-width:700px){
+  body{background-attachment:scroll;background-position:center top;background-size:auto 100vh}
+}
 
 </style></head>
 <body>
